@@ -1,30 +1,32 @@
-import * as React from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from 'react-router-dom';
-import { logo } from '../../logo';
-import { AmountBox, AmountLg, AmountSm, PageLink, TotalLg, TotalSm } from './Header.styled';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
+
 import { ShoppingCart } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
-
+import { logo } from '../../logo';
+import {
+  AmountBox,
+  AmountLg,
+  AmountSm,
+  PageLink,
+  TotalLg,
+  TotalSm,
+} from './Header.styled';
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-  const {amount} = useSelector(store => store.cart)
+  const { amount } = useSelector(store => store.cart);
 
-  const handleOpenNavMenu = (event) => {
+  const handleOpenNavMenu = event => {
     setAnchorElNav(event.currentTarget);
   };
 
@@ -32,12 +34,11 @@ function Header() {
     setAnchorElNav(null);
   };
 
-
   return (
-    <AppBar position="static" color='info'>
+    <AppBar position="static" color="info">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-        <Typography
+          <Typography
             variant="h6"
             noWrap
             component="a"
@@ -52,11 +53,9 @@ function Header() {
               textDecoration: 'none',
             }}
           >
-          Pizza Day
-   
+            Pizza Day
           </Typography>
 
-         
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -86,24 +85,25 @@ function Header() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-
-                <MenuItem onClick={handleCloseNavMenu}>
-                   <PageLink  to='/' activeclassname="active">Pizza</PageLink>
-                  
-                </MenuItem>
-                <MenuItem>
-                <PageLink to='/cart' activeclassname="active">Cart</PageLink>
-                </MenuItem>
-                
+              <MenuItem onClick={handleCloseNavMenu}>
+                <PageLink to="/" activeclassname="active">
+                  Pizza
+                </PageLink>
+              </MenuItem>
+              <MenuItem>
+                <PageLink to="/cart" activeclassname="active">
+                  Cart
+                </PageLink>
+              </MenuItem>
             </Menu>
           </Box>
 
-          <img width='40px' height='40px' src={logo} alt="logo" />
+          <img width="40px" height="40px" src={logo} alt="logo" />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -117,22 +117,38 @@ function Header() {
           >
             Pizza Day
           </Typography>
-          <AmountBox sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, justifyContent: 'end', alignItems: 'center' }}>
-            
-            <ShoppingCart fontSize="small"/>
+          <AmountBox
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'flex', md: 'none' },
+              justifyContent: 'end',
+              alignItems: 'center',
+            }}
+          >
+            <ShoppingCart fontSize="small" />
             <AmountSm>
-            <TotalSm>{amount}</TotalSm>
+              <TotalSm>{amount}</TotalSm>
             </AmountSm>
-      </AmountBox>
-          <AmountBox sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'end', alignItems: 'center' }}>
-              <PageLink  to='/' activeclassname="active">Pizza</PageLink>
-              <PageLink to='/cart' activeclassname="active">Cart</PageLink>
-                <ShoppingCart fontSize="large"/>
-                <AmountLg>
-                <TotalLg>{amount}</TotalLg>
-                </AmountLg>
           </AmountBox>
-
+          <AmountBox
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', md: 'flex' },
+              justifyContent: 'end',
+              alignItems: 'center',
+            }}
+          >
+            <PageLink to="/" activeclassname="active">
+              Pizza
+            </PageLink>
+            <PageLink to="/cart" activeclassname="active">
+              Cart
+            </PageLink>
+            <ShoppingCart fontSize="large" />
+            <AmountLg>
+              <TotalLg>{amount}</TotalLg>
+            </AmountLg>
+          </AmountBox>
         </Toolbar>
       </Container>
     </AppBar>
